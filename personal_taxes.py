@@ -17,9 +17,9 @@ for max_income_multiple in income_multiples:
     # these are the countries visible by default; others can be turned on/off by clicking the legend
     visible_countries = "UK - old UK - after mini Budget United States France Ireland Spain Estonia Sweden Italy"
 
-    excel_file = "personal-taxes_worldwide_data.xlsx"
+    csv_file = "personal-taxes_worldwide_data.csv"
 
-    logo_jpg = Image.open("logo_full_white_on_blue.jpg")
+    # logo_jpg = Image.open("logo_full_white_on_blue.jpg")
 
     # returns cell value or zero if blank
     def read_cell(df, row, column):
@@ -31,16 +31,16 @@ for max_income_multiple in income_multiples:
     # create plotly graph object
     # layout settings
 
-    logo_layout = [dict(
+    """logo_layout = [dict(
             source=logo_jpg,
             xref="paper", yref="paper",
             x=1, y=1.03,
             sizex=0.1, sizey=0.1,
             xanchor="right", yanchor="bottom"
-        )]
+        )]"""
 
     layout = go.Layout(
-        images=logo_layout,
+        # images=logo_layout,
         title=f"Gross wage (as multiple of average earnings, up to {max_income_multiple}x) vs effective income tax/SS/NICs rate",
         xaxis=dict(
             title="Gross wage (multiple of average earnings)",
@@ -55,14 +55,13 @@ for max_income_multiple in income_multiples:
 
 
 
-    print(f"Opening {excel_file}")
-    xl = pd.ExcelFile(excel_file)
+    print(f"Opening {csv_file}")
     print("")
-    print(f"Opened spreadsheet. Sheets: {xl.sheet_names}")
+    print(f"Opened spreadsheet.")
 
     print("")
 
-    df = xl.parse("data")
+    df = pd.read_csv(csv_file)
 
     for country_row in range (0,len(df)):
         country_name = df.iat[country_row, 0]
@@ -183,7 +182,6 @@ for max_income_multiple in income_multiples:
                 continue
 
             #BELGIUM local income tax taxable income is gross of tax credits. flag should be "gross"
-
 
             salary = salary_multiple * average_salary
             total_tax = 0
