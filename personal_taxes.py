@@ -20,6 +20,7 @@ for max_income_multiple in income_multiples:
     csv_file = "personal-taxes_worldwide_data.csv"
 
     # logo_jpg = Image.open("logo_full_white_on_blue.jpg")
+    # The above line requires an image not included in the repository.
 
     # returns cell value or zero if blank
     def read_cell(df, row, column):
