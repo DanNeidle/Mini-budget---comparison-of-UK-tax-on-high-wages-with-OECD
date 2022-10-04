@@ -19,7 +19,7 @@ for max_income_multiple in income_multiples:
 
     csv_file = "personal-taxes_worldwide_data.csv"
 
-    # logo_jpg = Image.open("logo_full_white_on_blue.jpg")
+    logo_jpg = Image.open("logo_full_white_on_blue.jpg")
     # The above line requires an image not included in the repository.
 
     # returns cell value or zero if blank
@@ -32,16 +32,16 @@ for max_income_multiple in income_multiples:
     # create plotly graph object
     # layout settings
 
-    """logo_layout = [dict(
+    logo_layout = [dict(
             source=logo_jpg,
             xref="paper", yref="paper",
             x=1, y=1.03,
             sizex=0.1, sizey=0.1,
             xanchor="right", yanchor="bottom"
-        )]"""
+        )]
 
     layout = go.Layout(
-        # images=logo_layout,
+        images=logo_layout,
         title=f"Gross wage (as multiple of average earnings, up to {max_income_multiple}x) vs effective income tax/SS/NICs rate",
         xaxis=dict(
             title="Gross wage (multiple of average earnings)",
