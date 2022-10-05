@@ -8,7 +8,7 @@ import pandas as pd
 from PIL import Image
 # also requires kaleido package
 
-income_multiples = [20]  # you can spit out a list here, if e.g. you want to look at particularly low or high incomes
+income_multiples = [5, 20]  # you can spit out a list here, if e.g. you want to look at particularly low or high incomes
 
 for max_income_multiple in income_multiples:
     y_axis_ticks = max_income_multiple / 10
@@ -301,7 +301,7 @@ for max_income_multiple in income_multiples:
             y_data.append(ETR)
 
         # add label to last data item showing country (bit hacky; must be better way)
-        labels = [""] * (int(max_income_multiple / income_resolution) - 1)
+        labels = [""] * (int(max_income_multiple / income_resolution) - 2)
         labels.append(country_name)
 
         if country_name in visible_countries:
