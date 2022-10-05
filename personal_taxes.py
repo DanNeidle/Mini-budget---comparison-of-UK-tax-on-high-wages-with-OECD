@@ -8,14 +8,15 @@ import pandas as pd
 from PIL import Image
 # also requires kaleido package
 
-income_multiples = [5, 20, 100]
+income_multiples = [20]  # you can spit out a list here, if e.g. you want to look at particularly low or high incomes
 
 for max_income_multiple in income_multiples:
     y_axis_ticks = max_income_multiple / 10
     income_resolution = max_income_multiple / 100  # the steps we go up
 
     # these are the countries visible by default; others can be turned on/off by clicking the legend
-    visible_countries = "UK - old UK - after mini Budget United States France Ireland Spain Estonia Sweden Italy"
+    # this initial list is chosen to give a good spread without overlapping/confusion
+    visible_countries = "Mexico Chile Belgium Austria Poland UK - old UK - after mini Budget United States France Ireland Spain Estonia Sweden Italy"
 
     csv_file = "personal-taxes_worldwide_data.csv"
 
