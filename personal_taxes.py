@@ -6,6 +6,7 @@
 import plotly.graph_objects as go
 import pandas as pd
 from PIL import Image
+import csv
 # also requires kaleido package
 
 income_multiples = [5, 20]  # you can spit out a list here, if e.g. you want to look at particularly low or high incomes
@@ -64,6 +65,10 @@ for max_income_multiple in income_multiples:
     print("")
 
     df = pd.read_csv(csv_file)
+
+    output_file = open(f'personal_tax_rates_output{max_income_multiple}.csv', 'w', encoding='UTF8', newline='')
+    writer = csv.writer(output_file)
+
 
     for country_row in range (0,len(df)):
         country_name = df.iat[country_row, 0]
@@ -320,5 +325,12 @@ for max_income_multiple in income_multiples:
             visible=visibility
         ))
 
+        # now write to csv
+        if country_row == 0:
+            writer.writerow([None] + x_data)
+
+        writer.writerow([country_name] + y_data)
+
     fig.show()
     fig.write_image(f"OECD_personal_{max_income_multiple}x.svg")
+    output_file.close()
